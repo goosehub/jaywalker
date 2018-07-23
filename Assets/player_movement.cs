@@ -19,16 +19,13 @@ public class player_movement : MonoBehaviour {
 	void FixedUpdate ()
     {
         // Movement
-        if (IsGrounded())
+        if (Input.GetKey("w"))
         {
-            if (Input.GetKey("w"))
-            {
-                rb.AddForce(transform.forward * forwardForce);
-            }
-            if (Input.GetKey("s"))
-            {
-                rb.AddForce(-transform.forward * forwardForce);
-            }
+            rb.AddForce(transform.forward * forwardForce);
+        }
+        if (Input.GetKey("s"))
+        {
+            rb.AddForce(-transform.forward * forwardForce);
         }
 
         // Jump

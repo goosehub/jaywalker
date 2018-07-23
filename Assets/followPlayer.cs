@@ -14,17 +14,6 @@ public class followPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        // transform.position = player.position + offset;
-
-        if (Input.GetKey("d"))
-        {
-            // transform.Rotate(0, transform.rotation.y + 1, 0);
-        }
-
-        if (Input.GetKey("a"))
-        {
-            // transform.Rotate(0, transform.rotation.y - 1, 0);
-        }
     }
     void LateUpdate()
     {
