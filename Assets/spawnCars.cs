@@ -4,19 +4,47 @@ using UnityEngine;
 
 public class spawnCars : MonoBehaviour
 {
-    public Rigidbody carPrefab;
-    public Transform barrelEnd;
+    public Rigidbody carInstance;
+    public float spawnFrequency = 4.0f;
+    public Vector3 startingPosition;
+    public Quaternion startingRotation;
+    // public Vector3 startingPositionOriginal;
+    // public Vector3 startingRotationOriginal;
 
     // Use this for initialization
     void Start ()
     {
-        InvokeRepeating("spawnCar", 3.0f, 5f);
+        startingPosition = new Vector3(carInstance.position.x, carInstance.position.y, carInstance.position.z);
+        startingRotation = new Quaternion(carInstance.rotation.x, carInstance.rotation.y, carInstance.rotation.z, carInstance.rotation.w);
+        if (!gameObject.name.Contains("Clone"))
+        {
+            InvokeRepeating("spawnCar", spawnFrequency, spawnFrequency);
+        }
+        // invokeSpawnCars(startingPosition, startingRotation);
     }
-	
-	// Update is called once per frame
-	void spawnCar ()
+
+    private void Update()
     {
-        Rigidbody carInstance;
-        carInstance = Instantiate(carPrefab, new Vector3(80, 1, -420), Quaternion.Euler(0, 0, 0));
+        if (
+            carInstance.position.z > 1000
+            || carInstance.position.z < -1000
+            || carInstance.position.x > 1000
+            || carInstance.position.x < -1000
+            )
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void invokeSpawnCars(Vector3 startingPositionOriginal, Quaternion startingRotationOriginal)
+    {
+        // Rigidbody newCarInstance;
+        // CarInstance = Instantiate(this.carInstance, startingPosition, startingRotation);
+    }
+
+    void spawnCar ()
+    {
+        Rigidbody newCarInstance;
+        newCarInstance = Instantiate(this.carInstance, startingPosition, startingRotation);
     }
 }

@@ -6,6 +6,7 @@ public class carDrive : MonoBehaviour
 {
     public Rigidbody rb;
     public float forwardForce = 80f;
+    public AudioSource audioData;
 
     // Use this for initialization
     void Start ()
@@ -15,6 +16,7 @@ public class carDrive : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate ()
     {
-        rb.velocity = new Vector3(0, 0, forwardForce);
+        rb.velocity = transform.forward * (forwardForce);
+        // rb.velocity = new Vector3(0, 0, forwardForce);
     }
 }
