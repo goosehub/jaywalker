@@ -4,11 +4,11 @@ using UnityEngine.SceneManagement;
 public class player_movement : MonoBehaviour {
 
     public Rigidbody rb;
-    public float forwardForce = 100f;
+    public float forwardForce = 30f;
     public float sidewaysSpeed = 50f;
     public float rotateSpeed = 1000;
-    public float upForce = 800f;
-    public float mouseRotateSpeed = 1000f;
+    public float upForce = 500f;
+    public float mouseRotateSpeed = 5f;
     private float jumpWaitTime = 0.5f;
     public bool canDoubleJump = false;
     public float jumpAllowedTime;
