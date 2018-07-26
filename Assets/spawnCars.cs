@@ -8,8 +8,6 @@ public class spawnCars : MonoBehaviour
     public float spawnFrequency = 4.0f;
     public Vector3 startingPosition;
     public Quaternion startingRotation;
-    // public Vector3 startingPositionOriginal;
-    // public Vector3 startingRotationOriginal;
 
     // Use this for initialization
     void Start ()
@@ -20,7 +18,6 @@ public class spawnCars : MonoBehaviour
         {
             InvokeRepeating("spawnCar", spawnFrequency, spawnFrequency);
         }
-        // invokeSpawnCars(startingPosition, startingRotation);
     }
 
     private void Update()
@@ -32,14 +29,11 @@ public class spawnCars : MonoBehaviour
             || carInstance.position.x < -1000
             )
         {
-            Destroy(gameObject);
+            if (gameObject.name.Contains("Clone"))
+            {
+                Destroy(gameObject);
+            }
         }
-    }
-
-    void invokeSpawnCars(Vector3 startingPositionOriginal, Quaternion startingRotationOriginal)
-    {
-        // Rigidbody newCarInstance;
-        // CarInstance = Instantiate(this.carInstance, startingPosition, startingRotation);
     }
 
     void spawnCar ()
