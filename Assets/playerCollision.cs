@@ -11,12 +11,12 @@ public class playerCollision : MonoBehaviour {
     public float secondsAfterDeath = 5;
     public AudioSource audioData;
 
-    // Use this for initialization
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "Obstacle")
         {
             rb.AddForce(transform.up * bounceUpForce);
+            rb.constraints = RigidbodyConstraints.None;
             movement.enabled = false;
             audioData.Play(0);
             StartCoroutine(reloadScene());
@@ -27,5 +27,23 @@ public class playerCollision : MonoBehaviour {
     {
         yield return new WaitForSeconds(secondsAfterDeath);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void FixedUpdate()
+    {
+        Reset();
+    }
+
+    private void Reset()
+    {
+        // Reset
+        if (Input.GetKey("r"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        if (rb.position.y < -500)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }

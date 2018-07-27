@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Threading;
 
 public class player_movement : MonoBehaviour {
 
@@ -7,22 +9,46 @@ public class player_movement : MonoBehaviour {
     public float forwardForce = 30f;
     public float sidewaysSpeed = 50f;
     public float mouseRotateSpeed = 5f;
-
+    private bool loading;
+    
     // Use this for initialization
     void Start()
     {
+        startLoading();
     }
 
-    // Update is called once per frame
     void FixedUpdate ()
     {
-        // Reset
-        if (Input.GetKey("r"))
+        if (loading)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            return;
         }
+        KeyMovement();
+        SlowPlayer();
+    }
 
-        // Movement
+    void startLoading()
+    {
+        loading = true;
+        Cursor.visible = false;
+        Time.timeScale = 100f;
+        StartCoroutine(finishLoading());
+    }
+
+    IEnumerator finishLoading()
+    {
+        yield return new WaitForSeconds(10);
+        Time.timeScale = 1f;
+        loading = false;
+    }
+
+    void SlowPlayer()
+    {
+        rb.velocity *= 9f/10f;
+    }
+
+    private void KeyMovement()
+    {
         if (Input.GetKey("w"))
         {
             rb.AddForce(transform.forward * forwardForce);
@@ -38,15 +64,6 @@ public class player_movement : MonoBehaviour {
         if (Input.GetKey("a"))
         {
             rb.AddForce(-transform.right * forwardForce);
-        }
-
-        if (Input.GetAxis("Mouse X") > 0)
-        {
-            transform.Rotate(0, 1 * mouseRotateSpeed, 0);
-        }
-        if (Input.GetAxis("Mouse X") < 0)
-        {
-            transform.Rotate(0, -1 * mouseRotateSpeed, 0);
         }
     }
 

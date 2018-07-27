@@ -9,7 +9,6 @@ public class spawnCars : MonoBehaviour
     public Vector3 startingPosition;
     public Quaternion startingRotation;
 
-    // Use this for initialization
     void Start ()
     {
         startingPosition = new Vector3(carInstance.position.x, carInstance.position.y, carInstance.position.z);
