@@ -8,6 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/scene_1.unity
     guid: 8b89f4c2a49b4d24daf0834b1a4864d2
-  - enabled: 1
+  - enabled: 0
     path: Assets/scene_2.unity
     guid: f2aa7bb63da742d4f9f62f6adeccddf0

@@ -12,6 +12,6 @@ public class followPlayer : MonoBehaviour {
     {
         transform.position = player.transform.position - player.transform.forward * cameraDistance;
         transform.LookAt(player.transform.position);
-        transform.position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
     }
 }
