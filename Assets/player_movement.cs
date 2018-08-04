@@ -34,7 +34,7 @@ public class player_movement : MonoBehaviour {
 
     IEnumerator finishLoading()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(12);
         Time.timeScale = 1f;
         loading = false;
     }
