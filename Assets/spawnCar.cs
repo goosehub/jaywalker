@@ -45,6 +45,23 @@ public class spawnCar : MonoBehaviour
             float driveFrequency = 0.1f;
             yield return new WaitForSeconds(driveFrequency);
             newCarInstance.velocity = transform.forward * (speed);
+            cleanupCar(newCarInstance);
+        }
+    }
+
+    void cleanupCar(Rigidbody newCarInstance)
+    {
+        if (
+            newCarInstance.position.z > 1200
+            || newCarInstance.position.z < -1200
+            || newCarInstance.position.x > 1200
+            || newCarInstance.position.x < -1200
+            )
+        {
+            if (newCarInstance.name.Contains("Clone"))
+            {
+                Destroy(newCarInstance.gameObject);
+            }
         }
     }
 
