@@ -45,11 +45,11 @@ public class spawnCar : MonoBehaviour
             float driveFrequency = 0.1f;
             yield return new WaitForSeconds(driveFrequency);
             newCarInstance.velocity = transform.forward * (speed);
-            cleanupCar(newCarInstance);
+            destroyCarWhenOutOfScene(newCarInstance);
         }
     }
 
-    void cleanupCar(Rigidbody newCarInstance)
+    void destroyCarWhenOutOfScene(Rigidbody newCarInstance)
     {
         if (
             newCarInstance.position.z > 1200
