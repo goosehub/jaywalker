@@ -46,7 +46,7 @@ public class player_movement : MonoBehaviour {
             return;
         }
         gameTime += Time.deltaTime;
-        timerText.text = Math.Round(gameTime, 1).ToString();
+        timerText.text = Math.Round(gameTime, 2).ToString("0.00");
     }
 
     void FixedUpdate()
