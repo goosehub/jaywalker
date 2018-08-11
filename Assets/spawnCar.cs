@@ -9,6 +9,8 @@ public class spawnCar : MonoBehaviour
     public float speed;
     public Vector3 startingPosition;
     public Quaternion startingRotation;
+    public string carName;
+    public bool bigCarsOnly;
 
     // Use this for initialization
     void Start ()
@@ -32,7 +34,16 @@ public class spawnCar : MonoBehaviour
 
     void Spawn()
     {
-        Rigidbody currentCarInstance = GameObject.Find(randomCar()).GetComponent<Rigidbody>();
+        string carToUse = randomCar();
+        if (bigCarsOnly)
+        {
+            carToUse = randomBigCar();
+        }
+        if (carName != "")
+        {
+            carToUse = carName;
+        }
+        Rigidbody currentCarInstance = GameObject.Find(carToUse).GetComponent<Rigidbody>();
         Rigidbody newCarInstance = Instantiate(currentCarInstance, startingPosition, startingRotation);
         StartCoroutine(driveCar(newCarInstance));
     }
@@ -79,6 +90,32 @@ public class spawnCar : MonoBehaviour
         carList.Add("ambulance");
         carList.Add("iceCreamTruck");
         carList.Add("fireTruck");
+        System.Random rnd = new System.Random();
+        string randomCar = carList[rnd.Next(carList.Count)];
+        return randomCar;
+    }
+
+    string randomBigCar()
+    {
+        List<string> carList = new List<string>();
+        carList.Add("cityBus");
+        carList.Add("garbageTruck");
+        carList.Add("schoolBus");
+        carList.Add("fireTruck");
+        carList.Add("redTruck");
+        carList.Add("yellowTruck");
+        carList.Add("redTruck");
+        carList.Add("yellowTruck");
+        carList.Add("redTruck");
+        carList.Add("yellowTruck");
+        carList.Add("redTruck");
+        carList.Add("yellowTruck");
+        carList.Add("redTruck");
+        carList.Add("yellowTruck");
+        carList.Add("redTruck");
+        carList.Add("yellowTruck");
+        carList.Add("redTruck");
+        carList.Add("yellowTruck");
         System.Random rnd = new System.Random();
         string randomCar = carList[rnd.Next(carList.Count)];
         return randomCar;
