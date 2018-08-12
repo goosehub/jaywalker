@@ -17,6 +17,7 @@ public class player_movement : MonoBehaviour {
     public Text timerText;
     public float gameTime;
     public float secondsAfterVictory = 4;
+    public float loadTime = 12;
 
     // Use this for initialization
     void Start()
@@ -34,7 +35,7 @@ public class player_movement : MonoBehaviour {
 
     IEnumerator finishLoading()
     {
-        yield return new WaitForSeconds(12);
+        yield return new WaitForSeconds(loadTime);
         Time.timeScale = 1f;
         loading = false;
     }

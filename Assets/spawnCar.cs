@@ -39,7 +39,7 @@ public class spawnCar : MonoBehaviour
         {
             carToUse = randomBigCar();
         }
-        if (carName != "")
+        if (carName != null && carName != "")
         {
             carToUse = carName;
         }
@@ -98,24 +98,29 @@ public class spawnCar : MonoBehaviour
     string randomBigCar()
     {
         List<string> carList = new List<string>();
-        carList.Add("cityBus");
-        carList.Add("garbageTruck");
-        carList.Add("schoolBus");
         carList.Add("fireTruck");
-        carList.Add("redTruck");
+        carList.Add("schoolBus");
+        carList.Add("schoolBus");
+        carList.Add("garbageTruck");
+        carList.Add("garbageTruck");
+        carList.Add("garbageTruck");
+        carList.Add("garbageTruck");
+        carList.Add("yellowTruck");
+        carList.Add("yellowTruck");
+        carList.Add("yellowTruck");
+        carList.Add("yellowTruck");
+        carList.Add("yellowTruck");
         carList.Add("yellowTruck");
         carList.Add("redTruck");
-        carList.Add("yellowTruck");
         carList.Add("redTruck");
-        carList.Add("yellowTruck");
         carList.Add("redTruck");
-        carList.Add("yellowTruck");
         carList.Add("redTruck");
-        carList.Add("yellowTruck");
         carList.Add("redTruck");
-        carList.Add("yellowTruck");
         carList.Add("redTruck");
-        carList.Add("yellowTruck");
+        carList.Add("redTruck");
+        carList.Add("redTruck");
+        carList.Add("redTruck");
+        carList.Add("redTruck");
         System.Random rnd = new System.Random();
         string randomCar = carList[rnd.Next(carList.Count)];
         return randomCar;

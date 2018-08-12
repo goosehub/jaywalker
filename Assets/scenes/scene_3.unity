@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 0b846be1b116429409a7669cacf2a62e, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -188,6 +188,52 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!1001 &106377424
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4330603509456850, guid: 2bf7da734f1a8224fb14055902b5b343, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330603509456850, guid: 2bf7da734f1a8224fb14055902b5b343, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000011216121
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330603509456850, guid: 2bf7da734f1a8224fb14055902b5b343, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 18.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330603509456850, guid: 2bf7da734f1a8224fb14055902b5b343, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330603509456850, guid: 2bf7da734f1a8224fb14055902b5b343, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330603509456850, guid: 2bf7da734f1a8224fb14055902b5b343, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330603509456850, guid: 2bf7da734f1a8224fb14055902b5b343, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330603509456850, guid: 2bf7da734f1a8224fb14055902b5b343, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330603509456850, guid: 2bf7da734f1a8224fb14055902b5b343, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 270
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2bf7da734f1a8224fb14055902b5b343, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &162621732
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +358,7 @@ Transform:
   - {fileID: 1363480213}
   - {fileID: 2099754832}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &298014284
 GameObject:
@@ -695,7 +741,7 @@ Transform:
   - {fileID: 2090472144}
   - {fileID: 2121980045}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &438600241
 GameObject:
@@ -1134,7 +1180,7 @@ Transform:
   - {fileID: 438600242}
   - {fileID: 1131203411}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &586951812
 GameObject:
@@ -1224,7 +1270,7 @@ RectTransform:
   - {fileID: 1807915443}
   - {fileID: 1697718724}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1570,7 +1616,7 @@ Transform:
   m_Children:
   - {fileID: 506404554}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &677181814
 MonoBehaviour:
@@ -1590,6 +1636,7 @@ MonoBehaviour:
   timerText: {fileID: 1807915444}
   gameTime: 0
   secondsAfterVictory: 4
+  loadTime: 12
 --- !u!114 &677181815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1805,6 +1852,8 @@ MonoBehaviour:
   speed: 80
   startingPosition: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0, w: 0}
+  carName: 
+  bigCarsOnly: 0
 --- !u!1 &949987908
 GameObject:
   m_ObjectHideFlags: 0
@@ -2016,6 +2065,8 @@ MonoBehaviour:
   speed: 130
   startingPosition: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0, w: 0}
+  carName: 
+  bigCarsOnly: 0
 --- !u!1 &1100764630
 GameObject:
   m_ObjectHideFlags: 0
@@ -2366,7 +2417,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1178351183
 MonoBehaviour:
@@ -2702,6 +2753,8 @@ MonoBehaviour:
   speed: 70
   startingPosition: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0, w: 0}
+  carName: 
+  bigCarsOnly: 0
 --- !u!1 &1277789372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2913,6 +2966,8 @@ MonoBehaviour:
   speed: 70
   startingPosition: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0, w: 0}
+  carName: 
+  bigCarsOnly: 0
 --- !u!1 &1382043627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2959,6 +3014,8 @@ MonoBehaviour:
   speed: 80
   startingPosition: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0, w: 0}
+  carName: 
+  bigCarsOnly: 0
 --- !u!1 &1391450971
 GameObject:
   m_ObjectHideFlags: 0
@@ -3086,7 +3143,7 @@ Transform:
   m_LocalScale: {x: 100, y: 10, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1425044131
 GameObject:
@@ -3293,6 +3350,8 @@ MonoBehaviour:
   speed: 70
   startingPosition: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0, w: 0}
+  carName: 
+  bigCarsOnly: 0
 --- !u!1 &1558342821
 GameObject:
   m_ObjectHideFlags: 0
@@ -3323,7 +3382,7 @@ Transform:
   - {fileID: 522617037}
   - {fileID: 524863669}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1624151532
 GameObject:
@@ -3557,7 +3616,7 @@ Transform:
   m_LocalScale: {x: 100, y: 10, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1643212549
 GameObject:
@@ -3701,7 +3760,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Level 3: Highway 69'
+  m_Text: 'Level 3: Route 66'
 --- !u!222 &1697718726
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4213,6 +4272,8 @@ MonoBehaviour:
   speed: 90
   startingPosition: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0, w: 0}
+  carName: 
+  bigCarsOnly: 0
 --- !u!33 &1957948523
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4349,6 +4410,8 @@ MonoBehaviour:
   speed: 80
   startingPosition: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0, w: 0}
+  carName: 
+  bigCarsOnly: 0
 --- !u!1001 &2121980044
 Prefab:
   m_ObjectHideFlags: 0
@@ -4460,7 +4523,7 @@ Transform:
   - {fileID: 1247118361}
   - {fileID: 524861637}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2139749074
 GameObject:
