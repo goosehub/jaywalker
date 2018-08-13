@@ -55,8 +55,12 @@ public class spawnCar : MonoBehaviour
         {
             float driveFrequency = 0.1f;
             yield return new WaitForSeconds(driveFrequency);
-            newCarInstance.velocity = transform.forward * (speed);
-            destroyCarWhenOutOfScene(newCarInstance);
+            // Check that car instance still exists after the wait
+            if (newCarInstance)
+            {
+                newCarInstance.velocity = transform.forward * (speed);
+                destroyCarWhenOutOfScene(newCarInstance);
+            }
         }
     }
 

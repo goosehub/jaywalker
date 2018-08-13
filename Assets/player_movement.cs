@@ -15,13 +15,15 @@ public class player_movement : MonoBehaviour {
     public float mouseRotateSpeed = 5f;
     private bool loading;
     private bool victory = false;
-    public Text timerText;
-    public Text highScoreText;
     public float gameTime;
     public float secondsAfterVictory = 4;
     public float loadTime = 12;
+    public Text timerText;
+    public Text highScoreText;
+    public Text ErrorText;
+    public Text LevelControlText;
+    public AudioSource victorySound;
 
-    // Use this for initialization
     void Start()
     {
         startLoading();
@@ -33,6 +35,10 @@ public class player_movement : MonoBehaviour {
         Cursor.visible = false;
         Time.timeScale = 10f;
         loadHighScore();
+        if (LevelControlText && loadHighScore() != 0)
+        {
+            LevelControlText.text = "N key for next level, P key for previous level";
+        }
         StartCoroutine(finishLoading());
     }
 
@@ -55,6 +61,7 @@ public class player_movement : MonoBehaviour {
 
     void FixedUpdate()
     {
+        OtherControls();
         if (loading)
         {
             return;
@@ -83,9 +90,28 @@ public class player_movement : MonoBehaviour {
         {
             rb.AddForce(-transform.right * forwardForce);
         }
+    }
+
+    public void OtherControls()
+    {
         if (Input.GetKeyDown(KeyCode.T))
         {
             transform.rotation = Quaternion.LookRotation(transform.position - rb.position);
+        }
+        if (Input.GetKey("n"))
+        {
+            if (loadHighScore() == 0)
+            {
+                ErrorText.text = "Level Not Unlocked";
+            }
+            else
+            {
+                loadNextScene();
+            }
+        }
+        if (Input.GetKey("p"))
+        {
+            loadPreviousScene();
         }
     }
 
@@ -100,17 +126,38 @@ public class player_movement : MonoBehaviour {
         Physics.Raycast(transform.position, Vector3.down, out hit, 5f);
         if (!victory && hit.collider.tag == "Finish")
         {
-            victory = true;
-            recordNewHighScore();
-            timerText.color = new Color(0.2f, 0.9f, 0.2f);
-            StartCoroutine(loadNextScene());
+            victoryActions();
         }
     }
 
-    IEnumerator loadNextScene()
+    public void victoryActions()
+    {
+        victory = true;
+        recordNewHighScore();
+        timerText.color = new Color(0.2f, 0.9f, 0.2f);
+        // If this is last level, play victory sound
+        if (victorySound)
+        {
+            victorySound.Play(0);
+        }
+        StartCoroutine(loadNextSceneAfterWait());
+    }
+
+    IEnumerator loadNextSceneAfterWait()
     {
         yield return new WaitForSeconds(secondsAfterVictory);
+        loadNextScene();
+    }
+
+    void loadNextScene()
+    {
         int newSceneNumber = Int32.Parse(getCurrentSceneNumber()) + 1;
+        SceneManager.LoadScene("scene_" + newSceneNumber);
+    }
+
+    void loadPreviousScene()
+    {
+        int newSceneNumber = Int32.Parse(getCurrentSceneNumber()) - 1;
         SceneManager.LoadScene("scene_" + newSceneNumber);
     }
 
