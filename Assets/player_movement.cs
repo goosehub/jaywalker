@@ -37,7 +37,7 @@ public class player_movement : MonoBehaviour {
         loadHighScore();
         if (LevelControlText && loadHighScore() != 0)
         {
-            LevelControlText.text = "N key for next level, P key for previous level";
+            LevelControlText.text = "N for next level, P for previous level";
         }
         StartCoroutine(finishLoading());
     }
