@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class playerCollision : MonoBehaviour {
@@ -10,6 +11,7 @@ public class playerCollision : MonoBehaviour {
     public float bounceUpForce = 1000f;
     public float secondsAfterDeath = 5;
     public AudioSource audioData;
+    public Text timerText;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -18,6 +20,7 @@ public class playerCollision : MonoBehaviour {
             rb.AddForce(transform.up * bounceUpForce);
             rb.constraints = RigidbodyConstraints.None;
             movement.enabled = false;
+            timerText.color = new Color(1f, 0f, 0f);
             audioData.Play(0);
             StartCoroutine(reloadScene());
         }

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
+using System.IO;
 using System.Threading;
 using System.Text.RegularExpressions;
 
@@ -15,6 +16,7 @@ public class player_movement : MonoBehaviour {
     private bool loading;
     private bool victory = false;
     public Text timerText;
+    public Text highScoreText;
     public float gameTime;
     public float secondsAfterVictory = 4;
     public float loadTime = 12;
@@ -30,6 +32,7 @@ public class player_movement : MonoBehaviour {
         loading = true;
         Cursor.visible = false;
         Time.timeScale = 10f;
+        loadHighScore();
         StartCoroutine(finishLoading());
     }
 
@@ -60,8 +63,6 @@ public class player_movement : MonoBehaviour {
         SlowPlayer();
         UpdateTimerText();
         CheckForVictory();
-
-        QuickLookBehind();
     }
 
     private void KeyMovement()
@@ -82,8 +83,6 @@ public class player_movement : MonoBehaviour {
         {
             rb.AddForce(-transform.right * forwardForce);
         }
-
-
         if (Input.GetKeyDown(KeyCode.T))
         {
             transform.rotation = Quaternion.LookRotation(transform.position - rb.position);
@@ -99,9 +98,10 @@ public class player_movement : MonoBehaviour {
     {
         RaycastHit hit;
         Physics.Raycast(transform.position, Vector3.down, out hit, 5f);
-        if (hit.collider.tag == "Finish")
+        if (!victory && hit.collider.tag == "Finish")
         {
             victory = true;
+            recordNewHighScore();
             timerText.color = new Color(0.2f, 0.9f, 0.2f);
             StartCoroutine(loadNextScene());
         }
@@ -110,21 +110,49 @@ public class player_movement : MonoBehaviour {
     IEnumerator loadNextScene()
     {
         yield return new WaitForSeconds(secondsAfterVictory);
-        string oldSceneNumber = Regex.Match(SceneManager.GetActiveScene().name, @"\d+").Value;
-        int newSceneNumber = Int32.Parse(oldSceneNumber) + 1;
+        int newSceneNumber = Int32.Parse(getCurrentSceneNumber()) + 1;
         SceneManager.LoadScene("scene_" + newSceneNumber);
     }
 
-    // Not in use
-    private void QuickLookBehind()
+    public string getCurrentSceneNumber()
     {
-        if (Input.GetKey("q"))
-        {
-        }
+        return Regex.Match(SceneManager.GetActiveScene().name, @"\d+").Value;
     }
 
     // Not in use
     bool IsGrounded() {
         return (Physics.Raycast(rb.transform.position, Vector3.down, 1f)); 
+    }
+
+    public void recordNewHighScore()
+    {
+        float currentHighScore = loadHighScore();
+        float newScore = gameTime;
+        if (currentHighScore != 0 && newScore >= currentHighScore)
+        {
+            return;
+        }
+        string newHighScoreString = Math.Round((float) newScore, 2).ToString("0.00");
+        File.WriteAllText(highScoreFilePath(), newHighScoreString);
+    }
+
+    private float loadHighScore()
+    {
+        if (File.Exists(highScoreFilePath()))
+        {
+            string highScore = File.ReadAllText(highScoreFilePath());
+            highScoreText.text = "Best Time: " + highScore;
+            float parsedHighScore;
+            if (float.TryParse(highScore, out parsedHighScore))
+            {
+                return parsedHighScore;
+            }
+        }
+        return 0;
+    }
+
+    public string highScoreFilePath()
+    {
+        return "Assets/levelHighScores/highscore-level-" + getCurrentSceneNumber() + ".txt";
     }
 }
