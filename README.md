@@ -1,5 +1,5 @@
-# jWalker
-A game about crossing the street
+# Jay Walker
+### A game about crossing the street
 
 This game will eventaully be made avaiable on steam, but until then, feel free to download and play the game while it's in alpha
 
