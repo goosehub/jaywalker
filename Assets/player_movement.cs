@@ -15,6 +15,7 @@ public class player_movement : MonoBehaviour {
     public float mouseRotateSpeed = 5f;
     private bool loading;
     private bool victory = false;
+    private bool allowGoingAnywhere = false;
     public float gameTime;
     public float secondsAfterVictory = 4;
     public float loadTime = 12;
@@ -70,6 +71,24 @@ public class player_movement : MonoBehaviour {
         SlowPlayer();
         UpdateTimerText();
         CheckForVictory();
+        reloadSceneIfPlayerGoesTooFar();
+    }
+
+    void reloadSceneIfPlayerGoesTooFar()
+    {
+        if (allowGoingAnywhere)
+        {
+            return;
+        }
+        if (
+            rb.position.z > 800
+            || rb.position.z < -800
+            || rb.position.x > 800
+            || rb.position.x < -800
+            )
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     private void KeyMovement()
