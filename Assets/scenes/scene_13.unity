@@ -1837,6 +1837,7 @@ MonoBehaviour:
   forwardForce: 150
   sidewaysSpeed: 50
   mouseRotateSpeed: 4
+  allowGoingAnywhere: 1
   gameTime: 0
   secondsAfterVictory: 4
   loadTime: 8

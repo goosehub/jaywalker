@@ -15,7 +15,7 @@ public class player_movement : MonoBehaviour {
     public float mouseRotateSpeed = 5f;
     private bool loading;
     private bool victory = false;
-    private bool allowGoingAnywhere = false;
+    public bool allowGoingAnywhere = false;
     public float gameTime;
     public float secondsAfterVictory = 4;
     public float loadTime = 12;
