@@ -1,7 +1,7 @@
 # Jay Walker
 ### A game about crossing the street
 
-This game will eventaully be made avaiable on steam, but until then, feel free to download and play the game while it's in alpha
+This game is [Available on Steam](https://store.steampowered.com/app/937320/Jay_Walker/)
 
 ## To Run
 * Click on green clone or download button
